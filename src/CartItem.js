@@ -11,8 +11,19 @@ class CartItem extends React.Component{
         }
     }
 
-    increaseQuantity=()=>{
+    increaseQuantity = ()=> {
+        
         console.log('this', this.state);
+        this.setState({
+            qty : this.state.qty + 1
+        })
+    }
+
+    decreaseQuantity = () =>{
+        console.log('this', this.state);
+        this.setState({
+            qty : this.state.qty - 1,
+        })
     }
 
     render(){
@@ -39,6 +50,7 @@ class CartItem extends React.Component{
                         alt="decrease" 
                         className="action-icons" 
                         src="https://image.flaticon.com/icons/png/512/992/992683.png"
+                        onClick={this.decreaseQuantity}
                         />
 
                         <img
