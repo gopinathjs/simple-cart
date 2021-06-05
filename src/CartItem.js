@@ -2,6 +2,7 @@ import React from 'react';
 
 class CartItem extends React.Component{
     constructor(){
+
         super();
         this.state={
             price : 999,
@@ -26,7 +27,7 @@ class CartItem extends React.Component{
     decreaseQuantity = () =>{
         
         const { qty } = this.state;
-        if (qty == 0){
+        if (qty === 0){
             return 0;
         }
         this.setState((prevState) => {
