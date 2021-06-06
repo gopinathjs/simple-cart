@@ -1,36 +1,11 @@
 import React from 'react';
 
 class CartItem extends React.Component{
-   
-
-    increaseQuantity = ()=> {
-        
-        console.log('this', this.state);
-        this.setState((prevState) => {
-            return{
-                qty : prevState.qty + 1
-            }
-        });
-        
-      
-    }
-
-    decreaseQuantity = () =>{
-        
-        const { qty } = this.state;
-        if (qty === 0){
-            return 0;
-        }
-        this.setState((prevState) => {
-            return{
-                qty : prevState.qty -1
-            }
-        })
-    }
 
     render(){
         console.log('this.props',this.props);
         const { price , title , qty } = this.props.product;
+        const {product , onIncreaseQuantity, onDecreaseQuantity, onDeleteProduct} = this.props;
         return(
             <div className="cart-item">
                 {this.props.jsx}
@@ -47,20 +22,21 @@ class CartItem extends React.Component{
                         alt="increase" 
                         className="action-icons"
                         src="https://image.flaticon.com/icons/png/512/992/992651.png"
-                        onClick={this.increaseQuantity}
+                        onClick={()=> onIncreaseQuantity(product)}
                         />
 
                         <img
                         alt="decrease" 
                         className="action-icons" 
                         src="https://image.flaticon.com/icons/png/512/992/992683.png"
-                        onClick={this.decreaseQuantity}
+                        onClick={()=> onDecreaseQuantity(product)}
                         />
 
                         <img
                         alt="delete" 
                         className="action-icons" 
-                        src="https://image.flaticon.com/icons/png/512/1214/1214428.png" 
+                        src="https://image.flaticon.com/icons/png/512/1214/1214428.png"
+                        onClick={()=>  onDeleteProduct(product.id)}
                         />
                     </div>
                 </div>
