@@ -49,7 +49,7 @@ handleDecreaseQuantity = (product) =>{
     const { products } =this.state;
     const index = products.indexOf(product);
 
-    if (products[index].qty == 0){
+    if (products[index].qty === 0){
         return;
     }
     products[index].qty -= 1;
@@ -83,7 +83,7 @@ getCartTotal = () =>{
     const { products } = this.state;
     let cartTotal = 0;
     products.map((product) =>{
-        cartTotal = cartTotal + product.qty * product.price
+       return cartTotal = cartTotal + product.qty * product.price
     })
 
     return cartTotal;
