@@ -45,9 +45,17 @@ handleIncreaseQuantity = (product) => {
     console.log("plz increase the qty of",product);
     const { products } = this.state;
     const index = products.indexOf(product);
-    products[index].qty += 1;
-    this.setState({
-        products : products
+
+    const docRef = this.db.collection('products').doc(products[index].id);
+    docRef
+    .update({
+        qty:products[index].qty + 1
+    })
+    .then(() => {
+        console.log('Updated Successfully')
+    })
+    .catch((error)=>{
+        console.log('Error:', error);
     })
 }
 
@@ -58,10 +66,20 @@ handleDecreaseQuantity = (product) =>{
     if (products[index].qty === 0){
         return;
     }
-    products[index].qty -= 1;
-    this.setState({
-        products
+    const docRef = this.db.collection('products').doc(products[index].id);
+    docRef
+    .update({
+        qty:products[index].qty - 1
     })
+    .then(() => {
+        console.log('Updated Successfully')
+    })
+    .catch((error)=>{
+        console.log('Error:', error);
+    })
+
+
+
 }
 
 handlerDeleteProduct = (id) => {
@@ -85,7 +103,7 @@ getCartCount =()=> {
     return count;
 }
 
-getCartTotal = () =>{
+getCartTotal = () => {
     const { products } = this.state;
     let cartTotal = 0;
     products.map((product) =>{
@@ -125,7 +143,6 @@ addproduct = () => {
   return (
     <div className="App">
       <Navbar count={this.getCartCount()}/>
-      <button onClick={this.addproduct} style={{padding:20, fontSize:20}}>Add a product</button>
       <Cart 
        products={products}
        onIncreaseQuantity ={this.handleIncreaseQuantity}
