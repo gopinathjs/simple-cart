@@ -24,6 +24,7 @@ componentDidMount(){
 
         snapshot.docs.map((doc) => { 
             console.log(doc.data())
+            return doc.data();
         });
 
         const products = snapshot.docs.map((doc) => {
@@ -83,7 +84,7 @@ handleDecreaseQuantity = (product) =>{
 }
 
 handlerDeleteProduct = (id) => {
-    const { products } = this.state;
+    //const { products } = this.state;
 
     const docRef = this.db.collection('products').doc(id);
 
