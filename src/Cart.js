@@ -1,6 +1,5 @@
 import React from 'react';
 import CartItem from './CartItem';
-
 const cart = (props) =>{
             const { products } = props;
             return(
